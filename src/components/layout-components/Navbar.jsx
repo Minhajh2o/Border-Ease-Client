@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useTheme } from "../context-provider/ThemeContext";
+import { useTheme } from "../../context-provider/ThemeContext";
 import { Link, NavLink } from "react-router";
 import { Tooltip } from "react-tooltip";
 import { Fade } from "react-awesome-reveal";

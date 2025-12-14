@@ -1,2 +1,207 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+/* Custom DaisyUI Themes */
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+  prefersdark: false;
+  color-scheme: light;
+  --color-base-100: oklch(98% 0.005 250);
+  --color-base-200: oklch(95% 0.01 250);
+  --color-base-300: oklch(90% 0.015 250);
+  --color-base-content: oklch(25% 0.02 250);
+  --color-primary: oklch(55% 0.22 250);
+  --color-primary-content: oklch(98% 0.01 250);
+  --color-secondary: oklch(65% 0.18 180);
+  --color-secondary-content: oklch(98% 0.01 180);
+  --color-accent: oklch(70% 0.15 80);
+  --color-accent-content: oklch(20% 0.02 80);
+  --color-neutral: oklch(40% 0.02 250);
+  --color-neutral-content: oklch(95% 0.01 250);
+  --color-info: oklch(65% 0.18 230);
+  --color-success: oklch(65% 0.18 150);
+  --color-warning: oklch(75% 0.18 80);
+  --color-error: oklch(60% 0.22 25);
+}
+
+@plugin "daisyui/theme" {
+  name: "dark";
+  prefersdark: true;
+  color-scheme: dark;
+  --color-base-100: oklch(20% 0.02 250);
+  --color-base-200: oklch(17% 0.02 250);
+  --color-base-300: oklch(14% 0.02 250);
+  --color-base-content: oklch(90% 0.01 250);
+  --color-primary: oklch(65% 0.22 250);
+  --color-primary-content: oklch(15% 0.02 250);
+  --color-secondary: oklch(70% 0.18 180);
+  --color-secondary-content: oklch(15% 0.02 180);
+  --color-accent: oklch(75% 0.15 80);
+  --color-accent-content: oklch(15% 0.02 80);
+  --color-neutral: oklch(70% 0.02 250);
+  --color-neutral-content: oklch(15% 0.01 250);
+  --color-info: oklch(70% 0.18 230);
+  --color-success: oklch(70% 0.18 150);
+  --color-warning: oklch(80% 0.18 80);
+  --color-error: oklch(65% 0.22 25);
+}
+
+/* Font Families */
+@theme {
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+}
+
+/* Global Styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Custom Utilities */
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Pattern Background */
+.pattern-dots {
+  background-image: radial-gradient(circle, currentColor 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.pattern-grid {
+  background-image:
+    linear-gradient(to right, currentColor 1px, transparent 1px),
+    linear-gradient(to bottom, currentColor 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Blob Animation */
+@keyframes blob {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  25% {
+    transform: translate(20px, -30px) scale(1.1);
+  }
+
+  50% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+
+  75% {
+    transform: translate(30px, 10px) scale(1.05);
+  }
+}
+
+.animate-blob {
+  animation: blob 8s ease-in-out infinite;
+}
+
+/* Slow bounce animation */
+@keyframes bounce-slow {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 3s ease-in-out infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+/* Card Hover Effects */
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.15);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: oklch(90% 0.01 250);
+}
+
+::-webkit-scrollbar-thumb {
+  background: oklch(60% 0.15 250);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(50% 0.18 250);
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-track {
+  background: oklch(20% 0.02 250);
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: oklch(45% 0.12 250);
+}
+
+/* Swiper Custom Styles */
+.swiper-pagination-bullet {
+  background: oklch(55% 0.22 250) !important;
+  opacity: 0.5;
+  width: 10px !important;
+  height: 10px !important;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1 !important;
+  background: oklch(55% 0.22 250) !important;
+}
+
+/* Fix Swiper fade effect to prevent text overlap */
+.swiper-slide {
+  opacity: 0 !important;
+  visibility: hidden;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.swiper-slide-active {
+  opacity: 1 !important;
+  visibility: visible;
+}
+
+.swiper-fade .swiper-slide {
+  pointer-events: none;
+}
+
+.swiper-fade .swiper-slide-active {
+  pointer-events: auto;
+}
+
+/* Swiper pagination position */
+.swiper-pagination {
+  bottom: 20px !important;
+}
