@@ -205,3 +205,106 @@ body {
 .swiper-pagination {
   bottom: 20px !important;
 }
+
+/* 3D Testimonials Carousel */
+.testimonials-3d-slider .swiper-slide {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.testimonials-3d-slider .swiper-slide:not(.swiper-slide-active) {
+  opacity: 0.5;
+}
+
+.testimonials-3d-slider .swiper-slide-active {
+  opacity: 1;
+  z-index: 10;
+}
+
+.testimonials-3d-slider .swiper-slide-prev,
+.testimonials-3d-slider .swiper-slide-next {
+  opacity: 0.7;
+}
+
+.testimonial-slide>div {
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.swiper-slide-active .testimonial-slide>div {
+  transform: scale(1.02);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+}
+
+/* Glass Effect */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .glass-effect {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Vector decoration styles */
+.vector-decoration {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.1;
+}
+
+[data-theme="dark"] .vector-decoration {
+  opacity: 0.05;
+}
+
+/* Testimonials Section */
+.testimonials-section {
+  background: linear-gradient(135deg, oklch(96% 0.01 250) 0%, oklch(98% 0.005 200) 50%, oklch(96% 0.01 180) 100%);
+}
+
+[data-theme="dark"] .testimonials-section {
+  background: linear-gradient(135deg, oklch(18% 0.02 250) 0%, oklch(20% 0.02 230) 50%, oklch(18% 0.02 200) 100%);
+}
+
+[data-theme="dark"] .testimonials-section .bg-\[linear-gradient\(rgba\(0\,0\,0\,0\.02\)_1px\,transparent_1px\)\,linear-gradient\(90deg\,rgba\(0\,0\,0\,0\.02\)_1px\,transparent_1px\)\] {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+}
+
+/* Testimonial Cards */
+.testimonial-card {
+  background-color: oklch(99% 0.005 250);
+  color: oklch(25% 0.02 250);
+  border: 1px solid oklch(92% 0.01 250);
+}
+
+[data-theme="dark"] .testimonial-card {
+  background-color: oklch(25% 0.02 250);
+  color: oklch(92% 0.01 250);
+  border: 1px solid oklch(30% 0.02 250);
+}
+
+.testimonial-text {
+  color: oklch(40% 0.02 250);
+}
+
+[data-theme="dark"] .testimonial-text {
+  color: oklch(75% 0.01 250);
+}
+
+.testimonial-meta {
+  color: oklch(50% 0.02 250);
+}
+
+[data-theme="dark"] .testimonial-meta {
+  color: oklch(65% 0.01 250);
+}
+
+.testimonial-divider {
+  border-top: 1px solid oklch(92% 0.01 250);
+}
+
+[data-theme="dark"] .testimonial-divider {
+  border-top: 1px solid oklch(35% 0.02 250);
+}
