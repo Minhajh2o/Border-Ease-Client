@@ -21,6 +21,7 @@
   --color-neutral-content: oklch(95% 0.01 250);
   --color-info: oklch(65% 0.18 230);
   --color-success: oklch(65% 0.18 150);
+  --color-success-content: oklch(98% 0.01 150);
   --color-warning: oklch(75% 0.18 80);
   --color-error: oklch(60% 0.22 25);
 }
@@ -43,6 +44,7 @@
   --color-neutral-content: oklch(15% 0.01 250);
   --color-info: oklch(70% 0.18 230);
   --color-success: oklch(70% 0.18 150);
+  --color-success-content: oklch(15% 0.01 150);
   --color-warning: oklch(80% 0.18 80);
   --color-error: oklch(65% 0.22 25);
 }

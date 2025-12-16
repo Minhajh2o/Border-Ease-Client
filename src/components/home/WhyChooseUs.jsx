@@ -15,43 +15,55 @@ const WhyChooseUs = () => {
             icon: HiOutlineShieldCheck,
             title: 'Secure & Reliable',
             description: 'Your personal data is protected with bank-level encryption and secure processing standards.',
-            color: 'primary',
-            gridClass: 'lg:col-span-2 bg-gradient-to-br from-primary/10 to-transparent'
+            iconClass: 'text-primary',
+            bgClass: 'bg-primary/10',
+            largeIconClass: 'text-primary',
+            gridClass: 'lg:col-span-2 bg-gradient-to-r from-primary/10 to-transparent rounded-3xl'
         },
         {
             icon: HiOutlineClock,
             title: 'Fast Processing',
             description: 'Get your visa processed quickly with our streamlined application system.',
-            color: 'secondary',
-            gridClass: 'lg:col-span-1 bg-base-100/50'
+            iconClass: 'text-secondary',
+            bgClass: 'bg-secondary/10',
+            largeIconClass: 'text-secondary',
+            gridClass: 'lg:col-span-1 bg-base-200/50 rounded-3xl'
         },
         {
             icon: HiOutlineSupport,
             title: '24/7 Support',
             description: 'Our expert team is always available to assist you with any questions.',
-            color: 'accent',
-            gridClass: 'lg:col-span-1 bg-base-100/50'
+            iconClass: 'text-accent',
+            bgClass: 'bg-accent/10',
+            largeIconClass: 'text-accent',
+            gridClass: 'lg:col-span-1 bg-base-200/50 rounded-3xl'
         },
         {
             icon: HiOutlineLightningBolt,
             title: 'Real-time Tracking',
             description: 'Track your application status instantly from anywhere.',
-            color: 'warning',
-            gridClass: 'lg:col-span-1 bg-base-100/50'
+            iconClass: 'text-accent',
+            bgClass: 'bg-accent/10',
+            largeIconClass: 'text-accent',
+            gridClass: 'lg:col-span-1 bg-base-200/50 rounded-3xl'
         },
         {
             icon: HiOutlineClipboardCheck,
             title: 'Easy Documentation',
             description: 'Clear guidelines and checklists make document preparation simple.',
-            color: 'info',
-            gridClass: 'lg:col-span-1 bg-base-100/50'
+            iconClass: 'text-info',
+            bgClass: 'bg-info/10',
+            largeIconClass: 'text-info',
+            gridClass: 'lg:col-span-1 bg-base-200/50 rounded-3xl'
         },
         {
             icon: HiOutlineGlobeAlt,
             title: '190+ Countries',
             description: 'Access visa information and applications for countries worldwide, all in one place.',
-            color: 'success',
-            gridClass: 'lg:col-span-2 bg-gradient-to-r from-success/10 to-transparent'
+            iconClass: 'text-success',
+            bgClass: 'bg-success/10',
+            largeIconClass: 'text-success',
+            gridClass: 'lg:col-span-2 bg-gradient-to-r from-success/10 to-transparent rounded-3xl'
         }
     ];
 
@@ -59,9 +71,10 @@ const WhyChooseUs = () => {
         <section className="py-16 lg:py-24 bg-base-100 relative overflow-hidden">
             {/* Background Elements */}
             <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2"></div>
-                <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2"></div>
-                <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] bg-[size:60px_60px]"></div>
+                <div className="absolute top-0 right-0 w-125 h-125 bg-primary/10 rounded-full blur-[200px] -translate-y-1/2 translate-x-1/2"></div>
+                <div className="absolute bottom-0 left-0 w-125 h-125 bg-secondary/10 rounded-full blur-[200px] translate-y-1/2 -translate-x-1/2"></div>
+                <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] bg-size-[40px_40px]"></div>
+
             </div>
 
             <div className="container max-w-7xl mx-auto px-4 relative z-10">
@@ -96,11 +109,11 @@ const WhyChooseUs = () => {
                         >
                             <div className="group relative h-full p-6 lg:p-8 rounded-3xl border border-base-200 hover:border-primary/20 transition-all duration-500 hover:shadow-xl hover:shadow-primary/5 overflow-hidden flex flex-col justify-between backdrop-blur-sm">
                                 {/* Large Background Icon */}
-                                <feature.icon className={`absolute -right-4 -bottom-4 w-32 h-32 opacity-5 group-hover:opacity-10 transition-opacity duration-500 text-${feature.color} -rotate-12`} />
+                                <feature.icon className={`absolute -right-4 -bottom-4 w-32 h-32 opacity-5 group-hover:opacity-10 transition-opacity duration-500 ${feature.largeIconClass} -rotate-12`} />
 
                                 <div>
                                     {/* Icon Box */}
-                                    <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-6 text-${feature.color} bg-${feature.color}/10 group-hover:scale-110 transition-transform duration-500`}>
+                                    <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-6 ${feature.iconClass} ${feature.bgClass} group-hover:scale-110 transition-transform duration-500`}>
                                         <feature.icon className="w-6 h-6" />
                                     </div>
 

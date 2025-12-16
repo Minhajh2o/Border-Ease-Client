@@ -53,9 +53,9 @@ const HowItWorks = () => {
             {/* Background Decorations */}
             <div className="absolute inset-0 pointer-events-none">
                 {/* Curved line connecting steps */}
-                <svg className="absolute inset-0 w-full h-full text-primary/5 hidden lg:block" preserveAspectRatio="none">
+                <svg className="absolute inset-0 w-full h-full text-primary/5 hidden lg:block" viewBox="0 0 100 100" preserveAspectRatio="none">
                     <path 
-                        d="M0 50% Q25% 20%, 50% 50% T100% 50%" 
+                        d="M0 50 Q25 20, 50 50 T100 50" 
                         fill="none" 
                         stroke="currentColor" 
                         strokeWidth="2"

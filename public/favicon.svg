@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6"/> <!-- bright blue -->
+      <stop offset="100%" stop-color="#06b6d4"/> <!-- cyan/teal -->
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="512" height="512" rx="128" fill="url(#g)"/>
+  <g fill="none" stroke="white" stroke-width="40" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Outer Circle -->
+    <circle cx="256" cy="256" r="160"/>
+    <!-- Equator -->
+    <line x1="96" y1="256" x2="416" y2="256"/>
+    <!-- Prime Meridian -->
+    <line x1="256" y1="96" x2="256" y2="416"/>
+    <!-- Curves -->
+    <ellipse cx="256" cy="256" rx="80" ry="160" />
+  </g>
+</svg>
