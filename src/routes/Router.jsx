@@ -5,6 +5,11 @@ import NotFound from "../pages/NotFound";
 import AllVisas from "../pages/visas/AllVisas";
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
+import AddVisa from "../pages/visas/AddVisa";
+import VisaDetails from "../pages/visas/VisaDetails";
+import MyAddedVisas from "../pages/visas/MyAddedVisas";
+import MyVisaApplications from "../pages/visas/MyVisaApplications";
+import PrivateRoute from "./PrivateRoute";
 
 const Router = createBrowserRouter([
   {
@@ -19,6 +24,38 @@ const Router = createBrowserRouter([
       {
         path: "/all-visas",
         element: <AllVisas />,
+      },
+      {
+        path: "/visa/:id",
+        element: (
+          <PrivateRoute>
+            <VisaDetails />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/add-visa",
+        element: (
+          <PrivateRoute>
+            <AddVisa />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/my-added-visas",
+        element: (
+          <PrivateRoute>
+            <MyAddedVisas />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/my-visa-applications",
+        element: (
+          <PrivateRoute>
+            <MyVisaApplications />
+          </PrivateRoute>
+        ),
       },
     ],
   },

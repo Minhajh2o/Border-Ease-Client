@@ -58,7 +58,7 @@ const Navbar = () => {
                                 {/* Decorative dot */}
                                 <span className="absolute -top-1 -right-1 w-3 h-3 bg-accent rounded-full border-2 border-base-100"></span>
                             </div>
-                            <div className="hidden sm:block">
+                            <div>
                                 <span className="font-serif text-xl font-bold bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent">
                                     BorderEase
                                 </span>

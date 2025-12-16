@@ -120,7 +120,7 @@ const Register = () => {
                             </Link>
                         </div>
 
-                        <div className="text-center mb-6">
+                        <div className="text-center mb-4">
                             <h2 className="text-2xl lg:text-3xl font-bold mb-2">Create Account</h2>
                             <p className="text-base-content/60">
                                 Already have an account?{' '}
@@ -147,7 +147,7 @@ const Register = () => {
                         </div>
 
                         {/* Register Form */}
-                        <form onSubmit={handleSubmit} className="space-y-4">
+                        <form onSubmit={handleSubmit} className="space-y-3">
                             {/* Name */}
                             <div className="form-control">
                                 <label className="label py-1">
