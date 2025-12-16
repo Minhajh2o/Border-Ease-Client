@@ -3,6 +3,8 @@ import Home from "../pages/Home";
 import MainLayout from "../layout/MainLayout";
 import NotFound from "../pages/NotFound";
 import AllVisas from "../pages/visas/AllVisas";
+import Login from "../pages/auth/Login";
+import Register from "../pages/auth/Register";
 
 const Router = createBrowserRouter([
   {
@@ -19,6 +21,14 @@ const Router = createBrowserRouter([
         element: <AllVisas />,
       },
     ],
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/register",
+    element: <Register />,
   },
   {
     path: "*",
