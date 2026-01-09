@@ -9,90 +9,16 @@ const LatestVisas = () => {
     const [visas, setVisas] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    // Mock data for development
-    const mockVisas = [
-        {
-            _id: '1',
-            countryName: 'United States',
-            countryImage: 'https://flagcdn.com/w320/us.png',
-            visaType: 'Tourist Visa',
-            processingTime: '5-7 Business Days',
-            fee: 160,
-            validity: '10 Years',
-            applicationMethod: 'Online'
-        },
-        {
-            _id: '2',
-            countryName: 'Canada',
-            countryImage: 'https://flagcdn.com/w320/ca.png',
-            visaType: 'Student Visa',
-            processingTime: '3-4 Weeks',
-            fee: 150,
-            validity: 'Duration of Study',
-            applicationMethod: 'Online'
-        },
-        {
-            _id: '3',
-            countryName: 'United Kingdom',
-            countryImage: 'https://flagcdn.com/w320/gb.png',
-            visaType: 'Work Visa',
-            processingTime: '3 Weeks',
-            fee: 363,
-            validity: '5 Years',
-            applicationMethod: 'Online'
-        },
-        {
-            _id: '4',
-            countryName: 'Australia',
-            countryImage: 'https://flagcdn.com/w320/au.png',
-            visaType: 'Tourist Visa',
-            processingTime: '20 Days',
-            fee: 145,
-            validity: '1 Year',
-            applicationMethod: 'Online'
-        },
-        {
-            _id: '5',
-            countryName: 'Japan',
-            countryImage: 'https://flagcdn.com/w320/jp.png',
-            visaType: 'Tourist Visa',
-            processingTime: '5 Days',
-            fee: 25,
-            validity: '90 Days',
-            applicationMethod: 'Embassy'
-        },
-        {
-            _id: '6',
-            countryName: 'Germany',
-            countryImage: 'https://flagcdn.com/w320/de.png',
-            visaType: 'Student Visa',
-            processingTime: '6-8 Weeks',
-            fee: 75,
-            validity: 'Duration of Study',
-            applicationMethod: 'Embassy'
-        }
-    ];
-
     useEffect(() => {
-        // Fetch latest 6 visas from API with timeout
+        // Fetch latest 6 visas from API
         const fetchLatestVisas = async () => {
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 3000);
-
             try {
-                const response = await fetch(`${import.meta.env.VITE_API_URL}/visas?limit=6`, {
-                    signal: controller.signal
-                });
-                clearTimeout(timeoutId);
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/visas?limit=6`);
                 const data = await response.json();
-                if (data && data.length > 0) {
-                    setVisas(data);
-                } else {
-                    setVisas(mockVisas);
-                }
+                setVisas(data || []);
             } catch (error) {
-                console.log('Using mock data - API not available', error);
-                setVisas(mockVisas);
+                console.error('Error fetching latest visas:', error);
+                setVisas([]);
             } finally {
                 setLoading(false);
             }

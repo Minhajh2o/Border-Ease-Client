@@ -1,10 +1,9 @@
-import { useState, useEffect } from 'react';
-import { useParams } from 'react-router';
+import { useState } from 'react';
+import { useLoaderData } from 'react-router';
 import { useAuth } from '../../context-provider/AuthContext';
 import { Fade, Slide } from 'react-awesome-reveal';
 import toast from 'react-hot-toast';
 import Modal from '../../components/shared/Modal';
-import Loading from '../../components/shared/Loading';
 import { 
     HiOutlineGlobeAlt,
     HiOutlineClock,
@@ -17,10 +16,8 @@ import {
 } from 'react-icons/hi';
 
 const VisaDetails = () => {
-    const { id } = useParams();
+    const visa = useLoaderData();
     const { user } = useAuth();
-    const [visa, setVisa] = useState(null);
-    const [loading, setLoading] = useState(true);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [applying, setApplying] = useState(false);
 
@@ -28,42 +25,6 @@ const VisaDetails = () => {
         firstName: '',
         lastName: ''
     });
-
-    useEffect(() => {
-        fetchVisaDetails();
-    }, [id]);
-
-    const fetchVisaDetails = async () => {
-        try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/visas/${id}`);
-            const data = await response.json();
-            setVisa(data);
-        } catch (error) {
-            console.error('Error fetching visa details:', error);
-            // Mock data for development
-            setVisa({
-                _id: id,
-                countryName: 'United States',
-                countryImage: 'https://flagcdn.com/w640/us.png',
-                visaType: 'Tourist Visa',
-                processingTime: '5-7 Business Days',
-                fee: 160,
-                validity: '10 Years',
-                applicationMethod: 'Online',
-                ageRestriction: 18,
-                description: 'The B-1/B-2 tourist visa is a temporary visa for pleasure, tourism, or medical treatment. It allows multiple entries and is one of the most popular visas for visiting the United States.',
-                requiredDocuments: [
-                    'Valid passport',
-                    'Visa application form',
-                    'Recent passport-sized photograph',
-                    'Proof of accommodation',
-                    'Bank statements'
-                ]
-            });
-        } finally {
-            setLoading(false);
-        }
-    };
 
     const handleApply = async (e) => {
         e.preventDefault();
@@ -102,16 +63,11 @@ const VisaDetails = () => {
             }
         } catch (error) {
             console.error(error);
-            toast.success('Application submitted successfully!'); // Mock success for dev
-            setIsModalOpen(false);
+            toast.error('Failed to submit application. Please try again.');
         } finally {
             setApplying(false);
         }
     };
-
-    if (loading) {
-        return <Loading />;
-    }
 
     if (!visa) {
         return (

@@ -21,61 +21,20 @@ const MyVisaApplications = () => {
     const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
-        fetchMyApplications();
+        if (user?.email) {
+            fetchMyApplications();
+        }
     }, [user]);
 
     const fetchMyApplications = async () => {
         try {
+            setLoading(true);
             const response = await fetch(`${import.meta.env.VITE_API_URL}/applications/user/${user?.email}`);
             const data = await response.json();
             setApplications(data);
         } catch (error) {
             console.error('Error fetching applications:', error);
-            // Mock data for development
-            setApplications([
-                {
-                    _id: '1',
-                    countryName: 'United States',
-                    countryImage: 'https://flagcdn.com/w320/us.png',
-                    visaType: 'Tourist Visa',
-                    processingTime: '5-7 Business Days',
-                    fee: 160,
-                    validity: '10 Years',
-                    applicationMethod: 'Online',
-                    applicantFirstName: 'John',
-                    applicantLastName: 'Doe',
-                    applicantEmail: user?.email,
-                    appliedDate: new Date().toISOString()
-                },
-                {
-                    _id: '2',
-                    countryName: 'Canada',
-                    countryImage: 'https://flagcdn.com/w320/ca.png',
-                    visaType: 'Student Visa',
-                    processingTime: '3-4 Weeks',
-                    fee: 150,
-                    validity: 'Duration of Study',
-                    applicationMethod: 'Online',
-                    applicantFirstName: 'John',
-                    applicantLastName: 'Doe',
-                    applicantEmail: user?.email,
-                    appliedDate: new Date(Date.now() - 86400000 * 3).toISOString()
-                },
-                {
-                    _id: '3',
-                    countryName: 'Japan',
-                    countryImage: 'https://flagcdn.com/w320/jp.png',
-                    visaType: 'Tourist Visa',
-                    processingTime: '5 Days',
-                    fee: 25,
-                    validity: '90 Days',
-                    applicationMethod: 'Embassy',
-                    applicantFirstName: 'John',
-                    applicantLastName: 'Doe',
-                    applicantEmail: user?.email,
-                    appliedDate: new Date(Date.now() - 86400000 * 7).toISOString()
-                }
-            ]);
+            toast.error('Failed to fetch your applications');
         } finally {
             setLoading(false);
         }
@@ -92,11 +51,12 @@ const MyVisaApplications = () => {
             if (response.ok) {
                 setApplications(prev => prev.filter(a => a._id !== applicationId));
                 toast.success('Application cancelled successfully!');
+            } else {
+                throw new Error('Failed to cancel application');
             }
         } catch (error) {
             console.error(error);
-            setApplications(prev => prev.filter(a => a._id !== applicationId)); // Mock delete
-            toast.success('Application cancelled successfully!');
+            toast.error('Failed to cancel application. Please try again.');
         }
     };
 

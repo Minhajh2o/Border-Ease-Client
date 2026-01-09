@@ -1,113 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { useLoaderData } from 'react-router';
 import { Fade, Zoom } from 'react-awesome-reveal';
 import VisaCard from '../../components/shared/VisaCard';
 import { HiOutlineFilter, HiOutlineGlobeAlt, HiOutlineSearch } from 'react-icons/hi';
 
 const AllVisas = () => {
-    const [visas, setVisas] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const loaderVisas = useLoaderData();
+    const visas = Array.isArray(loaderVisas) ? loaderVisas : [];
     const [filterType, setFilterType] = useState('All');
 
     const visaTypes = ['All', 'Tourist Visa', 'Student Visa', 'Work Visa', 'Business Visa', 'Transit Visa', 'Official Visa'];
-
-    useEffect(() => {
-        fetchVisas();
-    }, []);
-
-    const fetchVisas = async () => {
-        try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/visas`);
-            const data = await response.json();
-            setVisas(data);
-        } catch (error) {
-            console.error('Error fetching visas:', error);
-            // Mock data for development
-            setVisas([
-                {
-                    _id: '1',
-                    countryName: 'United States',
-                    countryImage: 'https://flagcdn.com/w320/us.png',
-                    visaType: 'Tourist Visa',
-                    processingTime: '5-7 Business Days',
-                    fee: 160,
-                    validity: '10 Years',
-                    applicationMethod: 'Online'
-                },
-                {
-                    _id: '2',
-                    countryName: 'Canada',
-                    countryImage: 'https://flagcdn.com/w320/ca.png',
-                    visaType: 'Student Visa',
-                    processingTime: '3-4 Weeks',
-                    fee: 150,
-                    validity: 'Duration of Study',
-                    applicationMethod: 'Online'
-                },
-                {
-                    _id: '3',
-                    countryName: 'United Kingdom',
-                    countryImage: 'https://flagcdn.com/w320/gb.png',
-                    visaType: 'Work Visa',
-                    processingTime: '3 Weeks',
-                    fee: 363,
-                    validity: '5 Years',
-                    applicationMethod: 'Online'
-                },
-                {
-                    _id: '4',
-                    countryName: 'Australia',
-                    countryImage: 'https://flagcdn.com/w320/au.png',
-                    visaType: 'Tourist Visa',
-                    processingTime: '20 Days',
-                    fee: 145,
-                    validity: '1 Year',
-                    applicationMethod: 'Online'
-                },
-                {
-                    _id: '5',
-                    countryName: 'Japan',
-                    countryImage: 'https://flagcdn.com/w320/jp.png',
-                    visaType: 'Tourist Visa',
-                    processingTime: '5 Days',
-                    fee: 25,
-                    validity: '90 Days',
-                    applicationMethod: 'Embassy'
-                },
-                {
-                    _id: '6',
-                    countryName: 'Germany',
-                    countryImage: 'https://flagcdn.com/w320/de.png',
-                    visaType: 'Student Visa',
-                    processingTime: '6-8 Weeks',
-                    fee: 75,
-                    validity: 'Duration of Study',
-                    applicationMethod: 'Embassy'
-                },
-                {
-                    _id: '7',
-                    countryName: 'France',
-                    countryImage: 'https://flagcdn.com/w320/fr.png',
-                    visaType: 'Business Visa',
-                    processingTime: '15 Days',
-                    fee: 99,
-                    validity: '1 Year',
-                    applicationMethod: 'Online'
-                },
-                {
-                    _id: '8',
-                    countryName: 'Singapore',
-                    countryImage: 'https://flagcdn.com/w320/sg.png',
-                    visaType: 'Transit Visa',
-                    processingTime: '3 Days',
-                    fee: 30,
-                    validity: '96 Hours',
-                    applicationMethod: 'Online'
-                }
-            ]);
-        } finally {
-            setLoading(false);
-        }
-    };
 
     const filteredVisas = filterType === 'All' 
         ? visas 
@@ -173,20 +75,7 @@ const AllVisas = () => {
             {/* Visas Grid */}
             <section className="py-12 lg:py-16">
                 <div className="container mx-auto px-4">
-                    {loading ? (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                            {[...Array(8)].map((_, idx) => (
-                                <div key={idx} className="card bg-base-200 animate-pulse">
-                                    <div className="h-48 bg-base-300 rounded-t-2xl"></div>
-                                    <div className="p-5 space-y-4">
-                                        <div className="h-6 bg-base-300 rounded w-3/4"></div>
-                                        <div className="h-4 bg-base-300 rounded w-1/2"></div>
-                                        <div className="h-10 bg-base-300 rounded"></div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    ) : filteredVisas.length === 0 ? (
+                    {filteredVisas.length === 0 ? (
                         <div className="text-center py-16">
                             <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-base-200 flex items-center justify-center">
                                 <HiOutlineSearch className="w-10 h-10 text-base-content/40" />
@@ -205,7 +94,7 @@ const AllVisas = () => {
                     )}
 
                     {/* Results Count */}
-                    {!loading && filteredVisas.length > 0 && (
+                    {filteredVisas.length > 0 && (
                         <div className="text-center mt-8 text-base-content/60">
                             Showing {filteredVisas.length} {filteredVisas.length === 1 ? 'visa' : 'visas'}
                             {filterType !== 'All' && ` for ${filterType}`}

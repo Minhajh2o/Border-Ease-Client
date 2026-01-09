@@ -22,43 +22,20 @@ const MyAddedVisas = () => {
     const [updating, setUpdating] = useState(false);
 
     useEffect(() => {
-        fetchMyVisas();
+        if (user?.email) {
+            fetchMyVisas();
+        }
     }, [user]);
 
     const fetchMyVisas = async () => {
         try {
+            setLoading(true);
             const response = await fetch(`${import.meta.env.VITE_API_URL}/visas/user/${user?.email}`);
             const data = await response.json();
             setVisas(data);
         } catch (error) {
             console.error('Error fetching visas:', error);
-            // Mock data for development
-            setVisas([
-                {
-                    _id: '1',
-                    countryName: 'United States',
-                    countryImage: 'https://flagcdn.com/w320/us.png',
-                    visaType: 'Tourist Visa',
-                    processingTime: '5-7 Business Days',
-                    fee: 160,
-                    validity: '10 Years',
-                    applicationMethod: 'Online',
-                    ageRestriction: 18,
-                    description: 'Tourist visa for visiting the United States.'
-                },
-                {
-                    _id: '2',
-                    countryName: 'Canada',
-                    countryImage: 'https://flagcdn.com/w320/ca.png',
-                    visaType: 'Student Visa',
-                    processingTime: '3-4 Weeks',
-                    fee: 150,
-                    validity: 'Duration of Study',
-                    applicationMethod: 'Online',
-                    ageRestriction: 16,
-                    description: 'Student visa for studying in Canada.'
-                }
-            ]);
+            toast.error('Failed to fetch your visas');
         } finally {
             setLoading(false);
         }
@@ -75,11 +52,12 @@ const MyAddedVisas = () => {
             if (response.ok) {
                 setVisas(prev => prev.filter(v => v._id !== visaId));
                 toast.success('Visa deleted successfully!');
+            } else {
+                throw new Error('Failed to delete visa');
             }
         } catch (error) {
             console.error(error);
-            setVisas(prev => prev.filter(v => v._id !== visaId)); // Mock delete for dev
-            toast.success('Visa deleted successfully!');
+            toast.error('Failed to delete visa. Please try again.');
         }
     };
 
@@ -100,12 +78,12 @@ const MyAddedVisas = () => {
                 setVisas(prev => prev.map(v => v._id === selectedVisa._id ? selectedVisa : v));
                 toast.success('Visa updated successfully!');
                 setIsEditModalOpen(false);
+            } else {
+                throw new Error('Failed to update visa');
             }
         } catch (error) {
             console.error(error);
-            setVisas(prev => prev.map(v => v._id === selectedVisa._id ? selectedVisa : v)); // Mock update
-            toast.success('Visa updated successfully!');
-            setIsEditModalOpen(false);
+            toast.error('Failed to update visa. Please try again.');
         } finally {
             setUpdating(false);
         }
