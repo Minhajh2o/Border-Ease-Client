@@ -10,6 +10,7 @@ import VisaDetails from "../pages/visas/VisaDetails";
 import MyAddedVisas from "../pages/visas/MyAddedVisas";
 import MyVisaApplications from "../pages/visas/MyVisaApplications";
 import PrivateRoute from "./PrivateRoute";
+import Loading from "../components/shared/Loading";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -18,6 +19,7 @@ const Router = createBrowserRouter([
     path: "/",
     element: <MainLayout />,
     errorElement: <NotFound />,
+    HydrateFallback: Loading,
     children: [
       {
         index: true,
@@ -26,6 +28,7 @@ const Router = createBrowserRouter([
       {
         path: "all-visas",
         element: <AllVisas />,
+        HydrateFallback: Loading,
         loader: async () => {
           const res = await fetch(`${API_URL}/visas`);
           return res.json();
@@ -38,6 +41,7 @@ const Router = createBrowserRouter([
             <VisaDetails />
           </PrivateRoute>
         ),
+        HydrateFallback: Loading,
         loader: async ({ params }) => {
           const res = await fetch(`${API_URL}/visas/${params.id}`);
           return res.json();
