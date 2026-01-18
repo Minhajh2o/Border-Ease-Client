@@ -3,7 +3,7 @@
 BorderEase is a comprehensive Visa Navigator Portal designed to simplify the complexities of international travel. It allows users to check visa requirements, check details, apply for visas online, and track their applications seamlessly.
 
 ## 🔗 Live Website
-[**Visit BorderEase**](https://border-ease.web.app) *(Replace with your actual live link)*
+[**Visit BorderEase**](https://border-ease.vercel.app/)
 
 ## ✨ Key Features
 
@@ -78,4 +78,5 @@ BorderEase is a comprehensive Visa Navigator Portal designed to simplify the com
 - **My Applications:** Track the status of your visa applications (Login required).
 
 ---
-*Created for the "Sunflower" Assignment - Visa Navigator Portal*
+## 🤝 Contributing
+Contributions are welcome! Please fork the repository and create a pull request with your changes.
